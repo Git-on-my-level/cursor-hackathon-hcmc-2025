@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Hackathon Analyzer</div>
+    <div class="meta">Local data viewer</div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Repos</h2>
+        <div class="filters">
+          <label><input type="checkbox" id="filter-preT0"> Pre-T0</label>
+          <label><input type="checkbox" id="filter-bulk"> Bulk</label>
+          <label><input type="checkbox" id="filter-merge"> Merge</label>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="summary-table">
+          <thead>
+            <tr>
+              <th>Repo</th>
+              <th>Total</th>
+              <th>Pre-T0</th>
+              <th>Bulk</th>
+              <th>First Bulk</th>
+              <th>Merges</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="details" hidden>
+      <div class="panel-header">
+        <h2 id="detail-title">Details</h2>
+      </div>
+      <div class="detail-grid">
+        <div>
+          <h3>Summary</h3>
+          <pre id="metrics-summary"></pre>
+        </div>
+        <div>
+          <h3>Flags</h3>
+          <pre id="metrics-flags"></pre>
+        </div>
+        <div>
+          <h3>Time Distribution</h3>
+          <pre id="metrics-time"></pre>
+        </div>
+        <div>
+          <h3>AI Notes</h3>
+          <pre id="ai-output"></pre>
+        </div>
+      </div>
+      <div>
+        <h3>Commits (first 100)</h3>
+        <div class="table-wrapper">
+          <table id="commits-table">
+            <thead>
+              <tr>
+                <th>#</th><th>Time</th><th>Ins</th><th>Del</th><th>Files</th><th>Bulk</th><th>Before T0</th><th>After T1</th><th>Subject</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -52,6 +52,13 @@ Optional flags:
 - `--no-update`: skip git fetch/reset for existing clones
 - `--log-level DEBUG|INFO|...`
 
+### Web UI (local viewer)
+Serve a minimal UI to browse outputs:
+```bash
+python3 ui/server.py --work-dir work --port 8000
+```
+Then open http://localhost:8000. It shows the summary table, metrics flags, time distribution, AI notes, and a commit slice (first 100 rows).
+
 ## Outputs
 Created under `work/` (auto-created if missing):
 - `repos/<id>/` cloned repositories (cached)
