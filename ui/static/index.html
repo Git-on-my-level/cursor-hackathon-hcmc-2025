@@ -5,32 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hackathon Analyzer</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
 <body>
   <header>
     <div class="logo">Hackathon Analyzer</div>
-    <div class="meta">Local data viewer</div>
+    <div class="meta">Live Dashboard</div>
   </header>
 
   <main>
     <section class="panel">
       <div class="panel-header">
-        <h2>Repos</h2>
+        <h2>Submissions</h2>
         <div class="filters">
           <label><input type="checkbox" id="filter-preT0"> Pre-T0</label>
           <label><input type="checkbox" id="filter-bulk"> Bulk</label>
           <label><input type="checkbox" id="filter-merge"> Merge</label>
         </div>
       </div>
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-value" id="stat-total">0</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-flagged">0</span>
+          <span class="stat-label">Flagged</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-clean">0</span>
+          <span class="stat-label">Clean</span>
+        </div>
+      </div>
       <div class="table-wrapper">
         <table id="summary-table">
           <thead>
             <tr>
-              <th>Repo</th>
-              <th>Total</th>
+              <th>Repository</th>
+              <th>Commits</th>
               <th>Pre-T0</th>
               <th>Bulk</th>
-              <th>First Bulk</th>
+              <th>Init</th>
               <th>Merges</th>
             </tr>
           </thead>
@@ -57,17 +72,25 @@
           <pre id="metrics-time"></pre>
         </div>
         <div>
-          <h3>AI Notes</h3>
+          <h3>AI Analysis</h3>
           <pre id="ai-output"></pre>
         </div>
       </div>
       <div>
         <h3>Commits (first 100)</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper" style="max-height: 400px;">
           <table id="commits-table">
             <thead>
               <tr>
-                <th>#</th><th>Time</th><th>Ins</th><th>Del</th><th>Files</th><th>Bulk</th><th>Before T0</th><th>After T1</th><th>Subject</th>
+                <th>#</th>
+                <th>Time</th>
+                <th>+</th>
+                <th>-</th>
+                <th>Files</th>
+                <th>Bulk</th>
+                <th>&lt;T0</th>
+                <th>&gt;T1</th>
+                <th>Message</th>
               </tr>
             </thead>
             <tbody></tbody>
