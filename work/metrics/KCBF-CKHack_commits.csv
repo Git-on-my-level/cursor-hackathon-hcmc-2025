@@ -1,0 +1,4 @@
+repo_id,seq_index,sha,author_time_iso,minutes_since_prev_commit,minutes_since_t0,insertions,deletions,files_changed,is_merge,is_before_t0,is_during_event,is_after_t1,flag_bulk_commit,subject
+KCBF-CKHack,0,b8f525f126f4beb14b1e646de449c930c1289c8a,2025-11-29T10:03:20+00:00,,243.33,1,0,1,0,0,1,0,0,First commit
+KCBF-CKHack,1,b2cd17304edaddca4a625b8ab95a25e559bea62b,2025-11-29T10:30:57+00:00,27.62,270.95,10254,1,30,0,0,1,0,1,feat: Add PhotoMaster - Interactive Photography Learning Platform
+KCBF-CKHack,2,e808c78b83811f8ac04322306b50836239eff81e,2025-11-29T10:34:07+00:00,3.17,274.12,107,108,1,0,0,1,0,0,"refactor: Update lesson content for progressive skill levels - Curious level: Simplified for zero-experience beginners with plain language - Explorer level: Introduces technical concepts gradually - Enthusiast level: Assumes basic knowledge, focuses on genres - Artist level: Advanced creative techniques - Master level: Professional business and mastery skills"
