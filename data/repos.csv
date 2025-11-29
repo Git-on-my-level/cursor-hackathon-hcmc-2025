@@ -1,3 +1,2 @@
-id,repo,t0
-team-alpha,openai/example-repo,
-team-beta,https://github.com/org/hackathon-submission.git,2025-12-01T10:00:00Z
+repo_url
+https://github.com/ngtthanhthao-boop/cursor-odoo.git

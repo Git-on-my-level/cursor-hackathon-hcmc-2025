@@ -12,7 +12,7 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 BULK_INSERTION_THRESHOLD = 1000
 BULK_FILES_THRESHOLD = 50
@@ -26,6 +26,15 @@ def parse_iso_datetime(value: str) -> datetime:
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
     return dt.astimezone(timezone.utc)
+
+
+def load_config(path: Optional[Path]) -> Dict:
+    if not path:
+        return {}
+    if not path.exists():
+        raise FileNotFoundError(f"Config file not found: {path}")
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 def ensure_work_dirs(work_dir: Path) -> Dict[str, Path]:
@@ -74,6 +83,39 @@ def get_default_branch(repo_dir: Path) -> str:
     result = run_git_command(repo_dir, ["rev-parse", "--abbrev-ref", "HEAD"])
     result.check_returncode()
     return result.stdout.strip()
+
+
+def parse_repo_url(raw: str) -> Tuple[str, str]:
+    """
+    Normalize a repo URL/slug to (owner/repo slug, clone_url candidate).
+    Accepts GitHub page URL, HTTPS .git, SSH git@github.com:owner/repo.git, or slug owner/repo.
+    """
+    if not raw:
+        raise ValueError("Empty repo URL")
+    trimmed = raw.strip()
+    if trimmed.startswith("git@github.com:"):
+        path_part = trimmed.split(":", 1)[1]
+    elif "://" in trimmed:
+        # Strip scheme/host
+        after_scheme = trimmed.split("://", 1)[1]
+        # Remove possible username@host/
+        if "/" in after_scheme:
+            path_part = after_scheme.split("/", 1)[1]
+        else:
+            raise ValueError(f"Could not parse repo URL: {raw}")
+    else:
+        path_part = trimmed
+
+    path_part = path_part.strip("/")
+    if path_part.endswith(".git"):
+        path_part = path_part[:-4]
+    parts = path_part.split("/")
+    if len(parts) < 2:
+        raise ValueError(f"Could not extract owner/repo from: {raw}")
+    owner, repo = parts[0], parts[1]
+    slug = f"{owner}/{repo}"
+    clone_url = raw if ("://" in trimmed or trimmed.startswith("git@")) else f"https://github.com/{slug}.git"
+    return slug, clone_url
 
 
 def ensure_cloned(repo_id: str, repo_spec: str, repos_root: Path, update: bool = True) -> Path:
@@ -382,9 +424,34 @@ def load_repos_csv(path: Path) -> List[Dict]:
         reader = csv.DictReader(f)
         rows = []
         for row in reader:
-            if not row.get("id") or not row.get("repo"):
-                continue
-            rows.append(row)
+            if "repo_url" in reader.fieldnames:
+                repo_raw = row.get("repo_url", "").strip()
+                if not repo_raw:
+                    continue
+                try:
+                    slug, clone_url = parse_repo_url(repo_raw)
+                except ValueError:
+                    continue
+                repo_id = row.get("id", "").strip() or slug.replace("/", "-")
+                rows.append(
+                    {
+                        "repo_id": repo_id,
+                        "repo_spec": clone_url if clone_url else slug,
+                        "slug": slug,
+                        "t0": row.get("t0", "").strip(),
+                    }
+                )
+            else:
+                if not row.get("id") or not row.get("repo"):
+                    continue
+                rows.append(
+                    {
+                        "repo_id": row["id"].strip(),
+                        "repo_spec": row["repo"].strip(),
+                        "slug": row["repo"].strip(),
+                        "t0": row.get("t0", "").strip(),
+                    }
+                )
         return rows
 
 
@@ -425,27 +492,36 @@ def build_summary_row(repo_id: str, repo_spec: str, default_branch: str, metrics
 def main() -> None:
     parser = argparse.ArgumentParser(description="Hackathon GitHub Repo Analyzer")
     parser.add_argument("--repos", required=True, help="Path to repos CSV")
-    parser.add_argument("--t0", required=True, help="Global hackathon start time (ISO-8601)")
-    parser.add_argument("--t1", help="Hackathon end time (ISO-8601)")
+    parser.add_argument("--config", help="Path to config.json (contains t0/t1/log_level)")
+    parser.add_argument("--t0", help="Global hackathon start time (ISO-8601). Overrides config if set.")
+    parser.add_argument("--t1", help="Hackathon end time (ISO-8601). Overrides config if set.")
     parser.add_argument("--work-dir", default="work", help="Work directory base path")
     parser.add_argument("--force", action="store_true", help="Recompute metrics even if cached")
     parser.add_argument("--no-update", action="store_true", help="Do not fetch/pull existing clones")
-    parser.add_argument("--log-level", default="INFO", help="Logging level")
+    parser.add_argument("--log-level", help="Logging level (overrides config)")
     args = parser.parse_args()
+
+    config = load_config(Path(args.config)) if args.config else {}
 
     work_dir = Path(args.work_dir)
     dirs = ensure_work_dirs(work_dir)
-    logger = setup_logging(args.log_level, dirs["logs"])
+    log_level = args.log_level or config.get("log_level") or "INFO"
+    logger = setup_logging(log_level, dirs["logs"])
 
+    t0_value = args.t0 or config.get("t0")
+    if not t0_value:
+        logger.error("Global t0 is required (provide via --t0 or config).")
+        return
     try:
-        global_t0 = parse_iso_datetime(args.t0)
+        global_t0 = parse_iso_datetime(t0_value)
     except Exception as exc:
         logger.error("Failed to parse global t0: %s", exc)
         return
     global_t1 = None
-    if args.t1:
+    t1_value = args.t1 or config.get("t1")
+    if t1_value:
         try:
-            global_t1 = parse_iso_datetime(args.t1)
+            global_t1 = parse_iso_datetime(t1_value)
         except Exception as exc:
             logger.error("Failed to parse global t1: %s", exc)
             return
@@ -462,9 +538,9 @@ def main() -> None:
     summary_rows = []
 
     for row in rows:
-        repo_id = row["id"].strip()
-        repo_spec = row["repo"].strip()
-        t0_value = row.get("t0", "").strip()
+        repo_id = row["repo_id"]
+        repo_spec = row["repo_spec"]
+        t0_value = row.get("t0", "")
         try:
             repo_t0 = parse_iso_datetime(t0_value) if t0_value else global_t0
         except Exception as exc:

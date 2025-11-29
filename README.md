@@ -17,14 +17,33 @@ hackathon-analyzer/
   work/                 # generated clones, metrics, summaries, ai outputs
 ```
 
+## Config
+- Create `config.json` (see `config.example.json`) to hold global times:
+  ```json
+  {
+    "t0": "2025-12-01T10:00:00Z",
+    "t1": "2025-12-02T10:00:00Z",
+    "log_level": "INFO"
+  }
+  ```
+- CLI flags can override config values (`--t0/--t1/--log-level`).
+
+## Input CSV
+- Export directly from your Google Form with header: `repo_url[,t0]`
+  - Accepts: GitHub page URL (`https://github.com/owner/repo`), HTTPS clone (`...repo.git`), or SSH (`git@github.com:owner/repo.git`).
+  - Optional `t0` column for per-repo overrides; leave blank otherwise.
+- The analyzer derives:
+  - `id = owner-repo` (or uses provided `id` column if present).
+  - Clone URL (adds `.git` if needed).
+
 ## Quick Start
-1) Populate `data/repos.csv` with headers `id,repo,t0` (see `data/repos.csv` sample). `repo` can be `owner/name` or full git URL. `t0` is optional per-repo override.
-2) Set your global hackathon T0 (ISO-8601, e.g., `2025-12-01T10:00:00Z`).
+1) Ensure `config.json` has the global T0 (and optional T1).
+2) Populate `data/repos.csv` from your form export (header `repo_url[,t0]`).
 3) Run the analyzer:
 ```bash
 python3 scan.py \
   --repos data/repos.csv \
-  --t0 2025-12-01T10:00:00Z \
+  --config config.json \
   --work-dir work
 ```
 Optional flags:

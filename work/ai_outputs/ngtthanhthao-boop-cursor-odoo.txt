@@ -1,0 +1,7 @@
+- Two commits only, both timestamped between 06:00–12:00 UTC (08:50 and 08:53 UTC local) which aligns perfectly with the hackathon window and leaves no prior or post-window activity.
+- Metrics flag a “bulk commit” because most of the ~3.8K LOC across 37 files landed in the second commit, but that bulk happened well after T0 so it could reflect a rapid prototype push rather than pre-work.
+- The README (`custom_addons/staff_manager/README.md`) describes a Staff Manager Odoo module: employee/call logging, system-wide toggles, Excel import wizard, reporting views—scope fits a focused, single-purpose hackathon build.
+- Large static assets (Excel templates, documentation, configs) plus modular views/models/requirements populate the tree, so the code structure looks like a plausible AI-assisted yet self-contained Odoo addon.
+- No red flags beyond the single large commit; commit cadence (two pushes 3–4 minutes apart) and lack of follow-up work mean there’s no evidence of post-event refinement or hidden pre-work.
+
+Overall authenticity assessment: looks consistent with a hackathon project
