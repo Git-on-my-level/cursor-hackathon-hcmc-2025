@@ -1,0 +1,5 @@
+- Commits are a short, tight burst—four recorded between 2025‑11‑29 10:11 and 11:29 UTC (all within the 06:00‑12:00 hack window), with no pre/post activity and a median spacing of ~27 minutes, so the timing fits a small-team sprint.
+- Flagged “bulk commit” behavior comes from the 10:12 UTC commit that added the full Vite/React app, package-lock, and docs (13147 LOC spread across 58 files); it’s a big chunk of scaffolding but it happens early in the window, so it’s worth noting but not inherently outside the hackathon scope.
+- Product appears to be an “AI Landing Page Generator” with Gemini prompt UI, drag-drop/code editors, export options, and live preview, as described in `README.md:18`.
+- Code shape mirrors that description: the repo ships many editor/preview/components plus Gemini orchestration and utility layers (`src/services/geminiService.js:1` ties the UI to live Gemini generation), which aligns with a hackathon-built modern frontend powered by AI helpers, not a trivial placeholder. 
+Overall authenticity assessment: looks consistent with a hackathon project

@@ -1,0 +1,15 @@
+repo_id,seq_index,sha,author_time_iso,minutes_since_prev_commit,minutes_since_t0,insertions,deletions,files_changed,is_merge,is_before_t0,is_during_event,is_after_t1,flag_bulk_commit,subject
+quanngynx-VNG.cursor-hackathon,0,75233b366e9ada696b97789c07536cebd098ecea,2025-11-29T06:36:01+00:00,,36.02,161,0,3,0,0,1,0,0,Initial commit
+quanngynx-VNG.cursor-hackathon,1,7cb4ef96223fec9cf75146204796e79b1b98948c,2025-11-29T07:54:30+00:00,78.48,114.50,56,0,3,0,0,1,0,0,Update .gitignore to include additional byterover rules files
+quanngynx-VNG.cursor-hackathon,2,4451c5cb843c49559525134e7170fb871783b526,2025-11-29T07:56:04+00:00,1.57,116.07,77,0,3,0,0,1,0,0,Enhance .gitignore to cover more byterover rules files
+quanngynx-VNG.cursor-hackathon,3,54db0c5fe89be4a96275b79636a8b229e31e26a4,2025-11-29T08:50:27+00:00,54.38,170.45,0,0,1,0,0,1,0,0,chore: add init doc
+quanngynx-VNG.cursor-hackathon,4,8b138b2171bb5c524baa1f1c138e6cba1c21df04,2025-11-29T09:01:53+00:00,11.43,181.88,439,0,5,0,0,1,0,0,feat: ai ba documentation
+quanngynx-VNG.cursor-hackathon,5,f07b3caf95b4926fec05a7686321d98ab97ca517,2025-11-29T09:04:19+00:00,2.43,184.32,7898,1,18,0,0,1,0,1,Update .gitignore to include Firebase configuration file and ensure proper formatting
+quanngynx-VNG.cursor-hackathon,6,86aee44990a69944bc0ecfb4ba94a10b8adf9556,2025-11-29T09:05:06+00:00,0.78,185.10,150,0,1,1,0,1,0,0,Merge branch 'dev/ba-docs' of https://github.com/quanngynx/VNG.cursor-hackathon into dev/api-quan update src from dev/ba-docs
+quanngynx-VNG.cursor-hackathon,7,6bb10676f6878c04e42f12d4bd723595979c05cf,2025-11-29T09:50:19+00:00,45.22,230.32,3950,22,27,0,0,1,0,1,Enhance project structure by adding Firebase initialization and food log routes to the server. Update documentation formatting for clarity.
+quanngynx-VNG.cursor-hackathon,8,8fe50e90530e8792f9b6aba999abcafd13b9b494,2025-11-29T09:51:00+00:00,0.68,231.00,15534,23,60,1,0,1,0,1,Merge pull request #1 from quanngynx/dev/api-quan
+quanngynx-VNG.cursor-hackathon,9,bd1d7ef7f4e5e81d5e2d0ec1425928aa0396b67d,2025-11-29T10:57:09+00:00,66.15,297.15,216,11,8,0,0,1,0,0,finally
+quanngynx-VNG.cursor-hackathon,10,58713572879203e4feb24a6b1b525228cca7870e,2025-11-29T11:01:00+00:00,3.85,301.00,70,27,5,0,0,1,0,0,hi
+quanngynx-VNG.cursor-hackathon,11,4c48b18c9648607e9fda0c9d29cff7240606de23,2025-11-29T11:01:45+00:00,0.75,301.75,2,1,1,0,0,1,0,0,Update .gitignore to add Firebase admin SDK JSON file and ensure newline at end of file
+quanngynx-VNG.cursor-hackathon,12,b1ac485b2375ed8cc7ec14f5befd26a23f0120fe,2025-11-29T11:02:02+00:00,0.28,302.03,33,7169,4,1,0,1,0,0,Merge branch 'main' of https://github.com/quanngynx/VNG.cursor-hackathon
+quanngynx-VNG.cursor-hackathon,13,8ba520fdd9cb3c29ded3d0e496281fa5c77f53ca,2025-11-29T12:06:42+00:00,64.67,366.70,0,0,0,1,0,0,1,0,Merge pull request #2 from quanngynx/dev/newnol

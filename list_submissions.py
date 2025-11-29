@@ -152,12 +152,16 @@ def main() -> int:
     rows = []
     with args.repos.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        for row in reader:
+        for idx, row in enumerate(reader, start=2):  # start=2 accounts for header line
             repo_val = row.get("repo_url") or row.get("repo") or ""
             repo_val = repo_val.strip()
             if not repo_val:
                 continue
-            slug, clone_url = parse_repo_url(repo_val)
+            try:
+                slug, clone_url = parse_repo_url(repo_val)
+            except ValueError as exc:
+                sys.stderr.write(f"Skipping row {idx}: {exc}\n")
+                continue
             team_name = repo_name_map.get(slug) or derive_team_name(row, slug)
             rows.append((team_name, clone_url))
 

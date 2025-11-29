@@ -1,0 +1,7 @@
+- Commits are mostly clustered during the 06:00–12:00 UTC window with a median spacing of ~9.6 minutes, showing steady iterative work; the four pre‑t0 commits are minor setup tweaks and don’t look like a big pre‑hackathon dump.
+- There isn’t a single enormous bulk commit after t0 (max 6,699 LOC added but spread across the log), and no merges, so the volume/timing fits an intense but realistic solo/team sprint.
+- The product is a motorcycle parking MVP: entry/exit/history flows (`app/entry/page.tsx`, `app/exit/page.tsx`, `app/history/page.tsx`) plus vehicle detail screens and hooks for stats/tickets, with OCR/AI integration (`lib/supabase/*`, `lib/hooks/useTickets.ts`, `app/api/ocr`), PWA support, and QR scanning components.
+- Code scope (Next.js, TypeScript, Supabase client/server, swipeable cards, theme toggle, camera capture, AI-powered OCR) matches what a small hackathon team could deliver with current AI tooling, especially given the focused feature set and modular components.
+- README is a developer checklist rather than product marketing, which feels unusual but not inherently suspicious; the tree itself tells the full product story.
+
+Overall authenticity assessment: looks consistent with a hackathon project

@@ -1,0 +1,6 @@
+- Timing stays inside the hack window: `work/metrics/hanious-presentation-bot.json:10` logs 12 commits with none before t0, `:12`/`:13` show 11 during the 6‑hour window and one after, and `:21`/`:23` record the 3‑hour and 3–6h buckets that capture the entire activity, so the cadence (median ~22 mins from `:18`) looks like a focused sprint.
+- There is a large bulk scaffold (max +11,316 LOC per `work/metrics/hanious-presentation-bot.json:16`) and the “has_bulk_commits” flag at `:30`, but every file addition still lands after t0, so the only caution for judges is that the event’s first commit is very heavy while still being within the window.
+- The README frames the repo as an AI-powered presentation creator with audio generation, transcription, exports, and presentation mode (see `presentation-bot/README.md:1` and the feature list at `presentation-bot/README.md:5`), plus it explicitly wires the frontend to a suite of AWS Lambda connect-the-dots services (`presentation-bot/README.md:74`).
+- The codebase pairs a React/Tailwind/Vite frontend stack (`presentation-bot/README.md:14`) with direct AWS Lambda scripts for audio/transcribe/export duties (`lambda/SLAI-audio.py:1` shows the boto3-based handlers), which matches the described scope for a modern AI-assisted hackathon build. 
+
+Overall authenticity assessment: looks consistent with a hackathon project

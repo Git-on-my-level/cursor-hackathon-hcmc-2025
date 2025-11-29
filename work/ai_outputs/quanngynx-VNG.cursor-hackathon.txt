@@ -1,0 +1,7 @@
+- Commit timing looks like a genuine sprint: 13 commits during the six-hour window with ~3.1-minute median spacing, no activity before T0, and only one minor follow-up after T1.
+- Flagged bulk commit (15K LOC in a single change) is the main red flag; it could be a big scaffolding push but unusual for a tiny team, so worth a closer look at what landed there.
+- Project appears to be a full-stack health tracker: Next.js/PNPM frontend with contexts/components and a Node/TypeScript/Express backend wired to Firebase (per README and tree).
+- Scope/shape matches a modern hackathon build—mostly wiring Firebase, API routes, and some UI components rather than bespoke algorithms—which fits expectations for pacing with AI coding helpers.
+- Notable pattern: detailed docs (docs/, README, guides) and infrastructure-heavy folder structure suggest the team spent time on alignment and onboarding, supporting legitimacy more than suspicion.
+
+Overall authenticity assessment: looks consistent with a hackathon project
