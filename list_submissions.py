@@ -59,9 +59,83 @@ def derive_team_name(row: Dict[str, str], slug: str) -> str:
     return slug.replace("/", "-")
 
 
+def _first_non_empty(row: Dict[str, str], keys: Tuple[str, ...]) -> str:
+    """Return the first non-empty value for the provided keys."""
+    for key in keys:
+        val = row.get(key, "")
+        if val and val.strip():
+            return val.strip()
+    return ""
+
+
+def load_repo_name_map(path: Path) -> Dict[str, str]:
+    """
+    Load a mapping of repo slug -> submitted project name from a CSV.
+    Accepts comma- or tab-delimited files; ignores rows without a valid repo URL.
+    """
+    if not path.exists():
+        return {}
+
+    repo_keys = (
+        "Please provide the Github URL of your project (should be publicly accessible)",
+        "repo_url",
+        "repo",
+        "github_url",
+        "github",
+    )
+    name_keys = (
+        "What is your team or product name? (will be used when announcing winners)",
+        "team_name",
+        "team",
+        "name",
+        "product_name",
+    )
+
+    repo_map: Dict[str, str] = {}
+    with path.open(newline="", encoding="utf-8") as f:
+        sample = f.read(2048)
+        f.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=",\t")
+            delimiter = dialect.delimiter
+        except csv.Error:
+            delimiter = "\t" if "\t" in sample else ","
+
+        reader = csv.DictReader(f, delimiter=delimiter)
+        for row in reader:
+            name_val = _first_non_empty(row, name_keys)
+            repo_val = _first_non_empty(row, repo_keys)
+            if not repo_val:
+                # fall back to any field that looks like a GitHub URL
+                for val in row.values():
+                    if val and "github.com" in val:
+                        repo_val = val.strip()
+                        break
+            if not repo_val:
+                continue
+
+            repo_candidates = [part.strip() for part in repo_val.replace("\n", " ").split(",") if part.strip()]
+            for candidate in repo_candidates:
+                try:
+                    slug, _ = parse_repo_url(candidate)
+                except ValueError:
+                    continue
+                # Keep the first discovered name for a repo slug to avoid churn on duplicates.
+                if slug not in repo_map:
+                    repo_map[slug] = name_val or slug.replace("/", "-")
+
+    return repo_map
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="List teams in submission order with git repo URLs.")
     parser.add_argument("--repos", default="data/repos.csv", type=Path, help="Path to repos CSV (default: data/repos.csv)")
+    parser.add_argument(
+        "--repo-map",
+        default="data/project-repo-map.csv",
+        type=Path,
+        help="Optional CSV mapping of repo URL to submitted team/product name (default: data/project-repo-map.csv)",
+    )
     parser.add_argument(
         "--names-only",
         action="store_true",
@@ -73,6 +147,8 @@ def main() -> int:
         sys.stderr.write(f"Repos CSV not found: {args.repos}\n")
         return 1
 
+    repo_name_map = load_repo_name_map(args.repo_map)
+
     rows = []
     with args.repos.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -82,7 +158,7 @@ def main() -> int:
             if not repo_val:
                 continue
             slug, clone_url = parse_repo_url(repo_val)
-            team_name = derive_team_name(row, slug)
+            team_name = repo_name_map.get(slug) or derive_team_name(row, slug)
             rows.append((team_name, clone_url))
 
     for idx, (team, repo_url) in enumerate(rows, start=1):

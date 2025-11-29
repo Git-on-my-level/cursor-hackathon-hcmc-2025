@@ -1,0 +1,7 @@
+- All four commits land inside the 6‑hour window (2 in the first half, 2 in the second) with a median 65‑minute gap and no activity before T0 or after T1, so the timeline lines up with a small team hustling through the event rather than pre/post work.
+- Metrics flag a single huge addition (~6.3k LOC across 43 files) right after T0, which looks like a bulk drop; judges might want to eyeball that commit to ensure it isn’t just a giant upstream import but the project’s main implementation.
+- The UI (see `src/app/page.tsx`) is a bilingual “VietChronicle” feed experience with dual sidebars, trending Vietnamese history topics, curated figures, and Compose/auth/learn-more modals—consistent with a themed social microapp.
+- Support code in `src/hooks/useFeedGenerator.ts` and `src/lib/mongodb.ts` shows a mockable feed generator backed by historical events plus a MongoDB connection layer, so the stack spans both interactive front‑end and data persistence concerns, which is ambitious but plausible with modern AI coding helpers.
+- Models, contexts, and modal components suggest a mostly complete single‑page experience rather than skeleton scafolding, making the scope reasonable for a hackathon that encouraged reuse of starter kits.
+
+Overall authenticity assessment: looks consistent with a hackathon project

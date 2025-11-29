@@ -1,0 +1,6 @@
+repo_id,seq_index,sha,author_time_iso,minutes_since_prev_commit,minutes_since_t0,insertions,deletions,files_changed,is_merge,is_before_t0,is_during_event,is_after_t1,flag_bulk_commit,subject
+MonkeyNerdCoding-VietFoodScanner,0,a9f62c234734fbd91ba367c189a7a7156091369b,2025-11-29T08:00:43+00:00,,120.72,340,0,1,0,0,1,0,0,Create README.md
+MonkeyNerdCoding-VietFoodScanner,1,520dfa457d0d626fa62e19408be95338ae5b5f66,2025-11-29T08:18:40+00:00,17.95,138.67,368,0,7,0,0,1,0,0,calling api
+MonkeyNerdCoding-VietFoodScanner,2,27a9165cc6ab720681556715c2877654007dcb43,2025-11-29T08:40:47+00:00,22.12,160.78,5465,16,21,0,0,1,0,1,First Looking of UI
+MonkeyNerdCoding-VietFoodScanner,3,a112cfa2bbc783c4d5b9eac062386ffa859d5aa3,2025-11-29T08:58:56+00:00,18.15,178.93,111,3,1,0,0,1,0,0,Update ResultCard.jsx
+MonkeyNerdCoding-VietFoodScanner,4,04515bd440d317cf2b8cc7032c53783926e4e541,2025-11-29T10:49:42+00:00,110.77,289.70,1070,358,14,0,0,1,0,1,final

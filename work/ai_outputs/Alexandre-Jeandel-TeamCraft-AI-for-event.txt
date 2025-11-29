@@ -1,0 +1,7 @@
+- Two commits fitting entirely within the 6-hour hack window with a median spacing of ~19 seconds, so volume/timing matches a rapid hackathon push; no pre-event history.  
+- Flags note bulk commit behavior (single large push adding ~1163 LOC across 17 files), but that can happen if scaffolding and assets were dropped quickly rather than incremental commits.  
+- Repo structure (Vite/React, components for organizer workflow, Gemini service) points to an event-planning assistant powered by AI chat capabilities, aligning with README’s AI Studio deployment instructions.  
+- Scope (front-end + Gemini integration, multi-step participant/organizer flow) is reasonable for a small team using modern AI tooling within a tight timeframe.  
+- No unusual patterns like after-hours commits or merges; main observation is the heavy initial commit which judges might want to inspect for cut/paste origins but could also be legitimate scaffold import.
+
+Overall authenticity assessment: looks consistent with a hackathon project

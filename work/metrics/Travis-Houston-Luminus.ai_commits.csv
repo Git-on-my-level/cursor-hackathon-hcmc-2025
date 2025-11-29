@@ -1,0 +1,24 @@
+repo_id,seq_index,sha,author_time_iso,minutes_since_prev_commit,minutes_since_t0,insertions,deletions,files_changed,is_merge,is_before_t0,is_during_event,is_after_t1,flag_bulk_commit,subject
+Travis-Houston-Luminus.ai,0,d19ccb166c1fc1a247b88b385c9e961bb5dffe1a,2025-11-29T07:25:37+00:00,,85.62,4393,0,18,0,0,1,0,1,Initial commit from Create Next App
+Travis-Houston-Luminus.ai,1,1355587d2d9c82575d1707b5b863909e83af4010,2025-11-29T07:28:23+00:00,2.77,88.38,0,0,18,0,0,1,0,0,Initial commit
+Travis-Houston-Luminus.ai,2,91737c3bbc6338cf2388b83141d9b8c67905dafe,2025-11-29T07:28:57+00:00,0.57,88.95,0,0,1,0,0,1,0,0,feat: update readme
+Travis-Houston-Luminus.ai,3,7c87e03afb20ad694e2158c1ca060b35bae5d820,2025-11-29T07:38:56+00:00,9.98,98.93,83,0,1,0,0,1,0,0,Add cursor rule
+Travis-Houston-Luminus.ai,4,4b6b55b646df7912acf6b5b136745d7c8fa91d74,2025-11-29T07:42:36+00:00,3.67,102.60,55,3,2,0,0,1,0,0,chore: add pinia
+Travis-Houston-Luminus.ai,5,d62e4703916657deb4357c2bc3c625e458da411a,2025-11-29T08:02:30+00:00,19.90,122.50,5471,0,17,0,0,1,0,1,add backend
+Travis-Houston-Luminus.ai,6,2ca6669042150d3246bc9305a94457ff2c75e3bd,2025-11-29T08:21:29+00:00,18.98,141.48,189,0,2,0,0,1,0,0,chore: add makefile
+Travis-Houston-Luminus.ai,7,a28f4477b145742da36f9e128327887aabd836a3,2025-11-29T08:44:42+00:00,23.22,164.70,8884,862,15,0,0,1,0,1,feat: update frontend
+Travis-Houston-Luminus.ai,8,f02a8c57e53abfb7ba412954c25e53f296ea5b8f,2025-11-29T08:56:33+00:00,11.85,176.55,962,2,7,0,0,1,0,0,fix: update nest-cli configuration and import EmployeesModule
+Travis-Houston-Luminus.ai,9,645a8006c52598e978577cf99b023799e5a7c74f,2025-11-29T09:10:26+00:00,13.88,190.43,1946,301,14,1,0,1,0,1,Merge pull request #1 from Travis-Houston/feat/initial-backend
+Travis-Houston-Luminus.ai,10,8067c64a0480d98ac879664e8535420d0cdb70ad,2025-11-29T09:14:42+00:00,4.27,194.70,11,7,2,0,0,1,0,0,chore: update mock-data.json and employee interface with additional fields and formatting improvements
+Travis-Houston-Luminus.ai,11,c977373f14cd6fa547b0a8b8ea3baa71a280fd37,2025-11-29T09:15:09+00:00,0.45,195.15,0,0,1,1,0,1,0,0,Merge branch 'main' of github.com:caphefalumi/my-nextjs into feat/frontend
+Travis-Houston-Luminus.ai,12,ea0db73b7af062b532664cb721c614724a0fc346,2025-11-29T09:43:44+00:00,28.58,223.73,18686,933,14,0,0,1,0,1,Feat: CSV Parser
+Travis-Houston-Luminus.ai,13,ebca22c3ef8120464cd521ee0ea81d4ef81bb46b,2025-11-29T09:46:23+00:00,2.65,226.38,40,195,2,1,0,1,0,0,Merge branch 'main' of https://github.com/Travis-Houston/my-nextjs into feature/csv_parser
+Travis-Houston-Luminus.ai,14,3d60eac099128fc760471a5d4fa85dcf493feda4,2025-11-29T09:48:27+00:00,2.07,228.45,1172,215,16,1,0,1,0,1,Merge pull request #4 from Travis-Houston/feature/csv_parser
+Travis-Houston-Luminus.ai,15,623ca81d3aa19be98e2655184f3c321c7d68ccb8,2025-11-29T09:51:12+00:00,2.75,231.20,16,33,2,1,0,1,0,0,Merge branch 'main' of github.com:caphefalumi/my-nextjs into feat/frontend
+Travis-Houston-Luminus.ai,16,bbf830570412bf140354b1f06bc74784f6e643b0,2025-11-29T09:58:09+00:00,6.95,238.15,34,14,1,1,0,1,0,0,Merge branch 'main' of https://github.com/Travis-Houston/Luminus.ai
+Travis-Houston-Luminus.ai,17,dfc3f4f4f593e80ccb151610fb987c824ec25b02,2025-11-29T10:07:58+00:00,9.82,247.97,38,16,1,0,0,1,0,0,"chore: refine Vercel deployment workflow with enhanced steps for frontend and backend, including caching and environment management"
+Travis-Houston-Luminus.ai,18,85d1546eb23e147c0232364a253cc715a740ae8e,2025-11-29T10:09:45+00:00,1.78,249.75,6,0,2,0,0,1,0,0,chore: update .gitignore to include package-lock.json and enhance Vercel workflow by removing package-lock.json files during deployment
+Travis-Houston-Luminus.ai,19,e69bf6fb0f80675368e092751de049c5dcab6016,2025-11-29T10:12:33+00:00,2.80,252.55,7,4,1,0,0,1,0,0,chore: update Vercel workflow to use Bun for dependency installation and streamline caching configuration
+Travis-Houston-Luminus.ai,20,6d7795ef8a792b78e89d956d2e96207cb54cd714,2025-11-29T10:16:37+00:00,4.07,256.62,2233,235,24,0,0,1,0,1,feat:working frontend
+Travis-Houston-Luminus.ai,21,c5495a3418bf765a8f609e52d5d10b6d03a9e035,2025-11-29T10:38:39+00:00,22.03,278.65,820,418,9,0,0,1,0,0,CSV parser features
+Travis-Houston-Luminus.ai,22,ce274fb499c88cb1058582c2c2355be5d244d065,2025-11-29T10:39:46+00:00,1.12,279.77,0,0,0,1,0,1,0,0,Merge branch 'feat/frontend' of https://github.com/Travis-Houston/my-nextjs into feat/frontend

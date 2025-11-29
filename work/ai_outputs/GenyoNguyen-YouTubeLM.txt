@@ -1,0 +1,7 @@
+- All 23 commits fall entirely within the 6-hour window (t0–t1) with no prior history, but the median spacing of ~3.6 minutes plus a single massive snapshot adding ~1.68M LOC and over 10k files suggests a bulk import rather than incremental work.
+- The large “bulk commit” (flagged by metrics) is atypical for a six-hour hackathon build; it looks like a repository copy/paste or generated dump, which makes it hard to attribute organic iterative progress.
+- Repository structure includes a full Python FastAPI backend, ingestion/evaluation tooling, and a separate frontend/Vite SPA—consistent with a YouTube-focused QA/summarization/quiz assistant described in the README.
+- The README and tree describe a feature-rich stack (RAG with Groq, database + vector store, transcripts, SSE streams) that is ambitious but plausible for a hackathon if scaffolding was imported wholesale.
+- Given the vast LOC jump and the condensed commit window, it’s worth flagging the project as likely created by importing an existing codebase rather than being coded live line-by-line during the hackathon.
+
+Overall authenticity assessment: some suspicious patterns

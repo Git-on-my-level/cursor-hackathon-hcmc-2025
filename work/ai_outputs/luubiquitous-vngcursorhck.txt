@@ -1,0 +1,6 @@
+- Metrics show exactly three commits all within the 06:00–12:00 window, none before/after, and a median gap of ~113 minutes, so the cadence is sparse but still fits a short hackathon sprint.
+- The large bulk commit (212,980 LOC across 1,238 files) appears to come from adding the full React/Node stack plus `node_modules`; that’s the kind of inflation that trips automated checks but can happen when a team installs dependencies mid-event (server diff dominated by `server/node_modules`).
+- `README.md:1` describes “Saigon Math War,” a real-time multiplayer territory conquista game built with a Node/Socket.io backend and a React/Tailwind frontend, which matches the `server/` and `client/` directories.
+- The codebase sticks to standard modern stacks (Vite/Tailwind for UI, Express + Socket.io for real-time logic) without any obvious external service dependencies, so the scope looks reasonable for a 6-hour build using AI-assisted tooling.
+
+Overall authenticity assessment: looks consistent with a hackathon project

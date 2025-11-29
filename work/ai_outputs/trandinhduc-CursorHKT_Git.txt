@@ -1,0 +1,7 @@
+- All three commits occurred during the hackathon window (no work before T0 or after T1) with a median interval of ~3.3 minutes, suggesting intensive burst of activity rather than leisurely pacing.
+- A single massive commit added ~28K LOC across 176 files, which is unusual but could reflect scaffolding + generated assets for a full-stack Expo/Supabase experience; still worth a second look to confirm how much of that was handwritten versus copied/generated.
+- Project appears to be an Expo mobile app (React Native) with Supabase-backed authentication, team/help flows, and map/record features, judging by the `app/` routes, `services/`, and abundant docs under `docs/`.
+- The file layout shows modern tooling (TS, hooks, context, services, Supabase integration) with layers for auth, tabs, help/support, provinces, and stores, which is plausible for an AI-augmented hackathon build if built with templates or scaffolding.
+- No commits before the event and no merges; timing and scope align with a single-team sprint, though the huge single commit could merit verification of originality/effort.
+
+Overall authenticity assessment: looks consistent with a hackathon project

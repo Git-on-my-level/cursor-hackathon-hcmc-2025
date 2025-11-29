@@ -1,0 +1,7 @@
+- All five commits land between the 3–6 hour slice inside the 6 a.m.–12 p.m. window, with a ~11 min median cadence and zero activity before/after, which matches a single intense hack session.
+- A single massive blob (≈14 k LOC, 75 files) appears to be the “initial” addition—`backend/PersonB_Code_Final.zip`, `PersonB_Code_2025…` zips plus extensive onboarding docs like `frontend/INTEGRATION_COMPLETE.md:1` point to a wholesale drop rather than incremental builds.
+- The product is “CyberGuard AI,” a Groq-powered suite of image/audio/video scanners plus supporting tools and busy documentation for Person A/B handoffs (`backend/README_PERSON_B.md:1`, `frontend/HUONG_DAN_CHAY.md:1`).
+- Both backend API routes and frontend scanner/result components are present in Next.js, with matching Groq utilities and validation helpers, so the code surface feels ambitious but plausible for a modern AI-assisted hack.
+- The sheer volume of QA/checklist docs (`backend/DEEP_CODE_REVIEW.md:1`, `frontend/CODE_REVIEW_REPORT.md:1`) and zipped deliverables allude to rapid assembly of prewritten pieces, which is worth flagging as an unusual pattern for a freshly started team project.
+
+Overall authenticity assessment: some suspicious patterns

@@ -1,0 +1,7 @@
+- All 16 commits are stamped between 2025-11-29 15:28 and 18:10 (+07), which is fully within the 6–12 h UTC hack window that started at 06:00 UTC; no activity before T0 or after T1, so the cadence matches an intense, short-lived sprint (median ~12 minutes between commits).  
+- The initial commit (15:28 local) brings in the full TypeScript/Vite setup plus shared types and folder layout, while a later single commit adds a massive chunk (~6 k loc) of feature code—large but not unheard of for a hackathon kick-off when scaffolding an entire simulation.  
+- `README.md` advertises “Spotlightify,” a music-driven 3D stage lightshow generator with pre-analysis, BPM/section detection, LED/backdrop fixtures, show-planner variations, and player UI, so the project scope is clearly tied to the code tree’s audio, stage, and mapping modules.  
+- The source tree already contains dedicated directories for audio analysis, mapping/show planning, stage rendering, styles, and shared types, which matches the README’s promised features and seems achievable within a few hours using modern tooling or AI-assisted scaffolding.  
+- No red flags beyond the expected large bulk additions; the commit rhythm, lack of post-event edits, and focused feature set point to purposeful hackathon work rather than prior development.  
+
+Overall authenticity assessment: looks consistent with a hackathon project

@@ -1,0 +1,7 @@
+- All 9 commits landed between T0 and T1 with no pre-event history, which matches a short, intense hackathon burst despite a median 10-min cadence; the volume/LOC growth (20k added) is high but still plausible for a prototype built with modern scaffolding.
+- Flags include a large initial/early bulk commit and the “has_bulk_commits” note—suggests some mass-uploaded generated or scaffolded code, but nothing after the event or before T0 indicates outside work.
+- README/tree describe “The Interrogation Room,” a voice‑first escape game with AI host, Gemini Live audio, minimal UI, coin meta, campaigns, etc., so the scope is ambitious yet conceptually achievable in a prototype window.
+- The codebase is a typical Next.js + Bun + Zustand + shadcn UI stack, with dedicated hooks, components, and AI integrations, fitting the profile of a modern rapid build using AI coding helpers.
+- No suspicious timing gaps or post-window changes; the pieces feel cohesive for a single-session build even if some files were added en masse (possibly via code generation or scaffolding).
+
+Overall authenticity assessment: looks consistent with a hackathon project

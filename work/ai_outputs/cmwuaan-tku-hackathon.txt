@@ -1,0 +1,7 @@
+- All 11 commits happened between 06:00–12:00 UTC on 2025‑11‑29, matching the hackathon window with a median ~4.8‑minute cadence; there are no commits before T0 or after T1, so timing itself is consistent with live development.
+- Metrics flag a large bulk commit (nearly 8.8k lines added) shortly after the start, but that fits an initial multi‑service scaffolding push (AI service + docs) rather than pre‑existing work; still worth noting since it’s the biggest single addition.
+- The project is “SOUND WATCHER,” a real‑time audio detection & alert system: Flutter mobile front end, TypeScript/Node BE, and a FastAPI AI service that classifies audio events, all documented in the README and tree.
+- The codebase spans multiple modern stacks (Flutter, FastAPI, TypeScript services) and focuses on AI/ML integration (audio capture, Base64 upload, classification) in a concise timeframe, which aligns with typical hackathon tooling usage.
+- There are a couple of merges from a `feat/fe` branch into `main`, indicating work staged for integration before the final push; nothing alarming but worth watching if judging collaboration/readiness.
+
+Overall authenticity assessment: looks consistent with a hackathon project

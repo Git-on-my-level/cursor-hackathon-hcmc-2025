@@ -1,0 +1,7 @@
+- Single commit with ~8k LOC and 32 files added entirely within the hackathon window suggests a bulk initial push but all work happened during the event window; no pre-event history.
+- All activity concentrated in one commit during the 3–6h slot may indicate the bulk of development happened in one burst rather than incremental hacking, but still aligns with a single-session hackathon effort.
+- README and repo tree describe a Next.js 14 tarot-reading app with Groq-powered AI readings, card-drawing mechanics, shadcn/ui + Tailwind styling, and serverless API endpoints—coherent, runnable scope.
+- Project structure (app router, API route, components, SVG assets, data file) and emphasis on modern tooling (Next.js, TypeScript, Tailwind, shadcn, AI API) fit what one would expect from an AI-assisted hackathon build.
+- Flagged patterns: large initial commit might warrant questioning for incremental development, but no commits pre/post window or merges that would disqualify.
+
+Overall authenticity assessment: looks consistent with a hackathon project

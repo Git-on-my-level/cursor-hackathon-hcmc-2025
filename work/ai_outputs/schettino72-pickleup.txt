@@ -1,0 +1,6 @@
+- Commits span 32 entries between the hack window (first at 06:36 UTC, last at 11:26 UTC), median gap ~7 minutes, and there are zero commits before T0 or after T1—timing looks consistent with a single active session.
+- The flagged large bulk add (15.6K LOC) is the scaffolding push that installs the Ionic/Vue stack, FastAPI server, assets, and package-lock files; subsequent commits remain focused and incremental rather than reintroducing another bulk change.
+- README and tree describe “Pickle UP,” a pickleball social/matchmaking app with smart pairings, partner-specific ELO, and club/event views, backed by FastAPI + SurrealDB and a Vue/Ionic frontend.
+- Backend tests, mock data scripts, Elo/match/club routes, and UI views/components evolve over the session, matching a typical hackathon scope enhanced by modern tooling rather than pre-existing polished product. 
+
+Overall authenticity assessment: looks consistent with a hackathon project

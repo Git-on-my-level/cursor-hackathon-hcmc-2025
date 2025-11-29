@@ -1,0 +1,7 @@
+- Commit activity is dense but contained within the hack window (15 commits, median ~8 minutes apart, split 5 commits in the first 3h and 10 in the 3–6h window) with no pre- or post-event contributions, which generally fits a focused, sprint-style project.
+- Flag: the repo has a large initial/bulk commit (up to ~4.8k LOC and 28 files changed) shortly after T0 plus a merge, so reviewers might want to confirm that was an honest rapid build rather than imported work.
+- The user-facing side wires up authentication and navigation for home, login, register, and profile routes (`src/App.tsx:1`), while `src/pages/Home.tsx:1` drives slot creation, auto-matching, polling for invitations, and leader/member workflows, signaling a “finding team/slot matchmaking” experience rather than just a static demo.
+- The stack extends into a custom Express backend with auth, users, teams, and match routes plus a health endpoint (`server/src/index.ts:1`), showing a full-stack focus on team coordination rather than just frontend polish—a reasonable scope for a hackathon leveraging modern tooling.
+- README still reflects the plain Vite template without product-specific docs, so judges might note the lack of narrative as a minor curiosity even though the codebase itself has substantive features.
+
+Overall authenticity assessment: looks consistent with a hackathon project
