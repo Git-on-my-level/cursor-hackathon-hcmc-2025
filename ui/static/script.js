@@ -66,6 +66,29 @@ function getAIPreview(aiText) {
   return `<span class="ai-preview">${escapeHtml(preview)}</span>`;
 }
 
+function extractVerdict(aiText) {
+  if (!aiText) return { icon: '⏳', class: 'pending', full: 'Pending analysis' };
+  
+  const verdictMatch = aiText.match(/Overall authenticity assessment:\s*(.+?)$/mi);
+  if (!verdictMatch) return { icon: '⏳', class: 'pending', full: 'No assessment found' };
+  
+  const verdict = verdictMatch[1].trim();
+  const isAuthentic = /consistent|authentic|legitimate/i.test(verdict);
+  const isSuspicious = /suspicious|concern|flag|issue|question/i.test(verdict);
+  
+  if (isSuspicious) {
+    return { icon: '⚠️', class: 'suspicious', full: verdict };
+  } else if (isAuthentic) {
+    return { icon: '✅', class: 'authentic', full: verdict };
+  }
+  return { icon: '➖', class: 'neutral', full: verdict };
+}
+
+function getVerdictBadge(aiText) {
+  const verdict = extractVerdict(aiText);
+  return `<span class="verdict-icon ${verdict.class}" title="${escapeHtml(verdict.full)}">${verdict.icon}</span>`;
+}
+
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
@@ -91,7 +114,7 @@ async function renderSummaryTable(rows) {
   if (filteredRows.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="9">
+        <td colspan="10">
           <div class="empty-state">
             <div class="empty-state-icon">📭</div>
             <div>No submissions match the current filters</div>
@@ -122,6 +145,7 @@ async function renderSummaryTable(rows) {
       <td style="text-align:center">${flagChip(row.has_bulk_commits)}</td>
       <td style="text-align:center">${flagChip(row.has_large_initial_commit_after_t0)}</td>
       <td style="text-align:center">${flagChip(row.has_merge_commits)}</td>
+      <td class="verdict-cell"><span class="verdict-icon pending">⏳</span></td>
       <td class="ai-cell"><span class="ai-preview no-data">Loading...</span></td>
     `;
     tr.dataset.repoId = repoId;
@@ -135,7 +159,9 @@ async function renderSummaryTable(rows) {
     // Fetch AI summary async
     fetchAISummary(repoId).then(aiText => {
       const aiCell = tr.querySelector('.ai-cell');
+      const verdictCell = tr.querySelector('.verdict-cell');
       if (aiCell) aiCell.innerHTML = getAIPreview(aiText);
+      if (verdictCell) verdictCell.innerHTML = getVerdictBadge(aiText);
     });
   });
 }
@@ -231,8 +257,10 @@ function formatAIOutput(text) {
   const verdictMatch = html.match(/(Overall authenticity assessment:.*?)$/mi);
   if (verdictMatch) {
     const verdict = verdictMatch[1];
+    const isSuspicious = /suspicious|concern|flag|issue|question/i.test(verdict);
     const isAuthentic = /consistent|authentic|legitimate/i.test(verdict);
-    const verdictClass = isAuthentic ? 'authentic' : 'suspicious';
+    // Suspicious takes priority over authentic keywords
+    const verdictClass = isSuspicious ? 'suspicious' : (isAuthentic ? 'authentic' : 'suspicious');
     html = html.replace(verdict, `<span class="verdict ${verdictClass}">${verdict}</span>`);
   }
   
@@ -294,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.querySelector("#summary-table tbody");
     tbody.innerHTML = `
       <tr>
-        <td colspan="9">
+        <td colspan="10">
           <div class="empty-state">
             <div class="empty-state-icon">⚠️</div>
             <div>Failed to load data: ${err.message}</div>
