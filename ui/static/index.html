@@ -10,11 +10,18 @@
 <body>
   <header>
     <div class="logo">Hackathon Analyzer</div>
-    <div class="meta">Live Dashboard</div>
+    <div class="header-right">
+      <div class="stats-inline">
+        <span class="stat-pill"><span id="stat-total">0</span> Total</span>
+        <span class="stat-pill flagged"><span id="stat-flagged">0</span> Flagged</span>
+        <span class="stat-pill clean"><span id="stat-clean">0</span> Clean</span>
+      </div>
+      <div class="meta">Live Dashboard</div>
+    </div>
   </header>
 
   <main>
-    <section class="panel">
+    <section class="panel full-width">
       <div class="panel-header">
         <h2>Submissions</h2>
         <div class="filters">
@@ -23,30 +30,19 @@
           <label><input type="checkbox" id="filter-merge"> Merge</label>
         </div>
       </div>
-      <div class="stats-bar">
-        <div class="stat">
-          <span class="stat-value" id="stat-total">0</span>
-          <span class="stat-label">Total</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="stat-flagged">0</span>
-          <span class="stat-label">Flagged</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="stat-clean">0</span>
-          <span class="stat-label">Clean</span>
-        </div>
-      </div>
       <div class="table-wrapper">
         <table id="summary-table">
           <thead>
             <tr>
-              <th>Repository</th>
-              <th>Commits</th>
-              <th>Pre-T0</th>
-              <th>Bulk</th>
-              <th>Init</th>
-              <th>Merges</th>
+              <th class="th-repo">Repository</th>
+              <th class="th-num" data-tooltip="Total number of commits in the repository">Commits</th>
+              <th class="th-num" data-tooltip="Lines of code added across all commits">LOC+</th>
+              <th class="th-num" data-tooltip="Lines of code deleted across all commits">LOC−</th>
+              <th class="th-flag" data-tooltip="Commits made before the hackathon start time (T0)">Pre-T0</th>
+              <th class="th-flag" data-tooltip="Contains bulk commits with unusually large changes">Bulk</th>
+              <th class="th-flag" data-tooltip="Large initial commit after T0 (potential pre-work)">Init</th>
+              <th class="th-flag" data-tooltip="Contains merge commits (may indicate external collaboration)">Merge</th>
+              <th class="th-ai">AI Summary</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -54,50 +50,55 @@
       </div>
     </section>
 
-    <section class="panel" id="details" hidden>
-      <div class="panel-header">
-        <h2 id="detail-title">Details</h2>
+    <!-- Slide-out details panel -->
+    <aside id="details-drawer" class="drawer hidden">
+      <div class="drawer-header">
+        <h2 id="detail-title">Repository Details</h2>
+        <button id="close-drawer" class="close-btn" aria-label="Close">&times;</button>
       </div>
-      <div class="detail-grid">
-        <div>
-          <h3>Summary</h3>
-          <pre id="metrics-summary"></pre>
-        </div>
-        <div>
-          <h3>Flags</h3>
-          <pre id="metrics-flags"></pre>
-        </div>
-        <div>
-          <h3>Time Distribution</h3>
-          <pre id="metrics-time"></pre>
-        </div>
-        <div>
+      <div class="drawer-content">
+        <div class="ai-section">
           <h3>AI Analysis</h3>
-          <pre id="ai-output"></pre>
+          <div id="ai-output" class="ai-output"></div>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h4>Summary</h4>
+            <pre id="metrics-summary"></pre>
+          </div>
+          <div class="metric-card">
+            <h4>Flags</h4>
+            <pre id="metrics-flags"></pre>
+          </div>
+          <div class="metric-card">
+            <h4>Time Distribution</h4>
+            <pre id="metrics-time"></pre>
+          </div>
+        </div>
+        <div class="commits-section">
+          <h3>Commits <span class="commit-count"></span></h3>
+          <div class="table-wrapper commits-table-wrapper">
+            <table id="commits-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Time</th>
+                  <th>+</th>
+                  <th>−</th>
+                  <th>Files</th>
+                  <th>Bulk</th>
+                  <th>&lt;T0</th>
+                  <th>&gt;T1</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       </div>
-      <div>
-        <h3>Commits (first 100)</h3>
-        <div class="table-wrapper" style="max-height: 400px;">
-          <table id="commits-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Time</th>
-                <th>+</th>
-                <th>-</th>
-                <th>Files</th>
-                <th>Bulk</th>
-                <th>&lt;T0</th>
-                <th>&gt;T1</th>
-                <th>Message</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+    </aside>
+    <div id="drawer-overlay" class="drawer-overlay hidden"></div>
   </main>
 
   <script src="script.js"></script>
