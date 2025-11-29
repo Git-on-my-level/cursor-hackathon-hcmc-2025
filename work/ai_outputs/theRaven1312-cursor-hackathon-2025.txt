@@ -1,0 +1,7 @@
+- All six commits land between 07:53 and 10:36 UTC on Nov 29 (median ~30 min), with nothing before T0 or after T1, so the timing looks well contained within the six-hour window.
+- The earliest push after T0 chunks in ~5k LOC across ~19 files; that kind of large initial commit is flagged in the metrics and could just be the bulk import to get both client/server scaffolding ready, but it’s worth noting for the judges as a “bulk commit” pattern.
+- The project is a location-centric “GeoSnap” experience: `geosnap/src/App.jsx:1` wires auth, permission gating, swipeable camera/gallery/map screens, and a post viewer, then the components (`CameraScreen`, `MapScreen`, etc.) handle photo capture, ratings, location metadata, and comment flows.
+- Backend scope matches a hackathon build—`geosnap/server/index.js:1` exposes Express routes for auth/photos/comments plus AI helpers, with SQLite-like storage (`server/database.js`) and support scripts.
+- The AI route (`geosnap/server/routes/ai.js:1`) calls Gemini 2.0 Flash with a Vietnam-focused prompt, parses JSON responses, and falls back to curated location suggestions/categories; that adds a modern, AI-enhanced touch without bloating the stack.
+
+Overall authenticity assessment: looks consistent with a hackathon project

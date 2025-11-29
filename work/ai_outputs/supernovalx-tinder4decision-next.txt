@@ -1,0 +1,7 @@
+- All seven commits land between 2025‑11‑29 09:47 and 10:51 UTC (within the 06:00‑12:00 hackathon window) with a median ~6.4 minutes between pushes, matching the provided event metrics.
+- Metrics flag a large bulk change (max 6,856 LOC in commit “v1”), which looks like scaffolding + UI polish dropped in one go; while unusual, it still happened during the window and may reflect rapid prototyping aided by modern GUI kits or AI assistants rather than pre‑event work.
+- The product is a “Decidr” decision helper built on Next.js/Tailwind: `app/page.tsx` wires start → swipe → results phases, and the three components (`app/components/StartScreen.tsx`, `CardSwiper.tsx`, `Results.tsx`) drive the onboarding, Tinder‑style card flow, and AI reasoning display.
+- The scope is reasonable for a hackathon leveraging AI tooling—`app/actions.ts` calls `ai` + `openrouter` to generate styled yes/no questions and a markdown recommendation, `react-query` manages mutations, and `react-tinder-card` + animated gradients deliver the swiping UX.
+- Notable touches include the animated circular confidence gauge, markdown reasoning card, and clipboard CTA in `Results.tsx`, showing polish but not excessive complexity for a team using modern component libraries.
+
+Overall authenticity assessment: looks consistent with a hackathon project

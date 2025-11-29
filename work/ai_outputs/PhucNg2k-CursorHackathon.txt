@@ -1,0 +1,7 @@
+- All seven commits are timestamped between 13:43 and 17:45 +07:00 (06:43–10:45 UTC) on 29 Nov, matching the 06:00–12:00 UTC hackathon window with no work before T₀ or after T₁, so the timing/volume is consistent with a single-day sprint.
+- A couple of the commits touch many files (max 44) and add large chunks of code (up to 2.6k LOC), which matches the “bulk commits” flag but is understandable given the need to scaffold both backend and frontend rapidly.
+- README plus tree describe “Donation Points Map,” a Vietnam disaster-relief platform with Google OAuth, real-time relief markers, GPS/route search, and organization dashboards, aligning with the described structure.
+- Codebase splits into a FastAPI-ish backend (app/ with routers, models/schemas, auth/database) and a Vite/React frontend (frontend/src with components/pages/services), so the scope is moderate and plausible for a team using modern tooling.
+- No unusual commit gaps or out-of-window pushes, and the mix of Python backend + React frontend is a typical hackathon stack, so nothing raises strong authenticity concerns.
+
+Overall authenticity assessment: looks consistent with a hackathon project

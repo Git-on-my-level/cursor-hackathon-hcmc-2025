@@ -1,0 +1,7 @@
+- Timeline and volume look hackathon-friendly: three commits all within the 6 h window (10:35–10:48 UTC on Nov 29) with median spacing of ~6 minutes, no pre- or post-window activity, so the work was entirely during the event.
+- Red-flagged bulk commit: one commit (749ff02) dropped the entire React/Leaflet/Gemini stack in ~3.3k lines right after a tiny README create, so judges might want to confirm that this was written live rather than copy-pasted from prior work.
+- Product: “Disaster Connect” is a voice-activated emergency-reporting dashboard that streams Gemini Live audio, gathers situational data, and pins incidents on a Leaflet map with toast notifications and call controls (`App.tsx:1`, `README.md:1`).
+- Technical scope: modern React/TS stack with heroicons, map markers, an audio visualizer, and a GeminiLiveService that handles microphone capture, streaming PCM, tool calls, and audio playback—plausible for a focused AI-tool-assisted hack (`services/geminiService.ts:1`, `services/audioUtils.ts:1`, `components/Map.tsx:1`).
+- Notable patterns: only one follow-up commit (“test”) tweaks `services/geminiService.ts`, so the team’s iteration after the big drop is minimal; no automated tests yet, but the focus is on glue logic between UI, location, and AI.
+
+Overall authenticity assessment: looks consistent with a hackathon project

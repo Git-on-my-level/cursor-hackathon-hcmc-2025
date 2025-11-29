@@ -1,0 +1,7 @@
+- Commit timing aligns tightly with the hackathon window: all 12 commits happen between `t0` and `t1`, median spacing ~2.8 minutes, which looks like a fast-paced session rather than prior prep (metrics show zero pre-event commits).  
+- A few merges (including pull requests) and one large bulk commit (~6.9k LOC) are flagged, so point out that the biggest chunks came after the kickoff—likely scaffolding a backend+frontend rather than hidden pre-work, but worth a quick spot check of that mega-commit for generated code.  
+- The product is a Relief Coordination System: React/TS/Vite frontend with Ant Design + Tailwind, multilingual UI, mock data, and provisions to connect to a Flask/MySQL backend (see `frontend-cursor/README.md` and `backend-cursor/README.md` for the tech stack).  
+- Scope feels hackathon-appropriate: full-stack proof-of-concept with Docker scripts, API mappings, and mock data, so modern AI tooling could plausibly have accelerated boilerplate creation without making the work feel out-of-bounds.  
+- Notable pattern: backend and frontend directories come with comprehensive docs and Docker integrations—suggests intentional packaging for judges rather than leftover unrelated artifacts.
+
+Overall authenticity assessment: looks consistent with a hackathon project
