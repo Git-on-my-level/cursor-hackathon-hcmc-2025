@@ -15,3 +15,5 @@ HhaMinh0310-workdate.dev,12,6c12547094b18f166e9d791513260709495108b1,2025-11-29T
 HhaMinh0310-workdate.dev,13,dfadf4e811ac510ad831c6058944cf867461cc83,2025-11-29T11:10:38+00:00,10.18,310.63,413,68,4,0,0,1,0,0,"fix: Complete partnership flow - auto-load partnership, invite partner UI, fix RLS policies"
 HhaMinh0310-workdate.dev,14,b357181cbfcc7c63e1870daca69b097ab3d72235,2025-11-29T11:19:56+00:00,9.30,319.93,44,16,3,0,0,1,0,0,debug: Add console logs to partnership flow for debugging
 HhaMinh0310-workdate.dev,15,56bab9d703be445fb26d5604c8ebf570624e0534,2025-11-29T11:25:53+00:00,5.95,325.88,325,10,4,0,0,1,0,0,feat: Add FindPartner page - allow users to connect with partner by email/ID
+HhaMinh0310-workdate.dev,16,8969bea98a92e886f02ca8d1420bb2df72e65845,2025-11-29T11:42:59+00:00,17.10,342.98,70,30,2,0,0,1,0,0,"fix: Improve date/time picker UI - default to today, add icons, better styling"
+HhaMinh0310-workdate.dev,17,900684e8c0bc7e06e666cf8a2f675470ee2dd60a,2025-11-30T02:25:44+00:00,882.75,1225.73,255,11,1,0,0,0,1,0,docs: Rewrite README.md with comprehensive project documentation

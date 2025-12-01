@@ -1,7 +1,7 @@
-- All seven commits land between 2025‑11‑29 09:47 and 10:51 UTC (within the 06:00‑12:00 hackathon window) with a median ~6.4 minutes between pushes, matching the provided event metrics.
-- Metrics flag a large bulk change (max 6,856 LOC in commit “v1”), which looks like scaffolding + UI polish dropped in one go; while unusual, it still happened during the window and may reflect rapid prototyping aided by modern GUI kits or AI assistants rather than pre‑event work.
-- The product is a “Decidr” decision helper built on Next.js/Tailwind: `app/page.tsx` wires start → swipe → results phases, and the three components (`app/components/StartScreen.tsx`, `CardSwiper.tsx`, `Results.tsx`) drive the onboarding, Tinder‑style card flow, and AI reasoning display.
-- The scope is reasonable for a hackathon leveraging AI tooling—`app/actions.ts` calls `ai` + `openrouter` to generate styled yes/no questions and a markdown recommendation, `react-query` manages mutations, and `react-tinder-card` + animated gradients deliver the swiping UX.
-- Notable touches include the animated circular confidence gauge, markdown reasoning card, and clipboard CTA in `Results.tsx`, showing polish but not excessive complexity for a team using modern component libraries.
+- Commit cadence fits a short sprint: all 8 commits land within the 6 a.m.–noon hackathon window, with a median 6.8 minutes between pushes, so there’s no sign of pre- or post-hackathon work slipped in.
+- Metrics flag a “bulk” large initial commit (6,856 LOC across 17 files) but given the single-day effort this could reflect setting up the whole Next.js/AI stack rather than masking prior work; still worth a light check.
+- The repo houses a Next.js 16 + React 19 frontend (`app/page.tsx`, `components/*`) that wires react-tinder-card swipes to Claude Sonnet via OpenRouter, matching the README pitch for “Decidr” as an AI-assisted Tinder-style decision helper.
+- Project scope (UI, swipe logic, OpenRouter integration) is consistent with modern AI tooling accelerating prototyping, and the codebase looks focused on the intended feature set rather than sprawling unrelated modules.
+- No commits before T0 and all changes are frontend-focused; judges can validate that the single large commit isn’t a merged history of older work but rather genuine bulk setup from the event.
 
 Overall authenticity assessment: looks consistent with a hackathon project

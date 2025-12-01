@@ -7,3 +7,4 @@ TienDat8605-CursorHackathon,4,62ca04d529df4652845fb3a2bcc193381ee6ef39,2025-11-2
 TienDat8605-CursorHackathon,5,ca3eed8554c99506b4f9486da16159981c886483,2025-11-29T10:36:07+00:00,2.30,276.12,12,2,1,0,0,1,0,0,fix ui
 TienDat8605-CursorHackathon,6,f98e345ec05d67e5db5fedef00a1d8fd2084fae2,2025-11-29T10:50:02+00:00,13.92,290.03,44,19,1,0,0,1,0,0,fix max depth
 TienDat8605-CursorHackathon,7,1fea83ead88878bf578356e034fe80b14f359e7a,2025-11-29T10:52:37+00:00,2.58,292.62,5,7,2,0,0,1,0,0,fix max depth ui
+TienDat8605-CursorHackathon,8,e24b415580ac9c883e085d4d5f1b076900794855,2025-11-29T11:53:21+00:00,60.73,353.35,8,595,11,0,0,1,0,0,"Remove cached files from git: todo.txt, plan.md, update.md, __pycache__, .serena/, .python-version"

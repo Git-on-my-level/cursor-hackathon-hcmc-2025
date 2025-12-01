@@ -1,7 +1,7 @@
-- All 11 commits happened between 06:00–12:00 UTC on 2025‑11‑29, matching the hackathon window with a median ~4.8‑minute cadence; there are no commits before T0 or after T1, so timing itself is consistent with live development.
-- Metrics flag a large bulk commit (nearly 8.8k lines added) shortly after the start, but that fits an initial multi‑service scaffolding push (AI service + docs) rather than pre‑existing work; still worth noting since it’s the biggest single addition.
-- The project is “SOUND WATCHER,” a real‑time audio detection & alert system: Flutter mobile front end, TypeScript/Node BE, and a FastAPI AI service that classifies audio events, all documented in the README and tree.
-- The codebase spans multiple modern stacks (Flutter, FastAPI, TypeScript services) and focuses on AI/ML integration (audio capture, Base64 upload, classification) in a concise timeframe, which aligns with typical hackathon tooling usage.
-- There are a couple of merges from a `feat/fe` branch into `main`, indicating work staged for integration before the final push; nothing alarming but worth watching if judging collaboration/readiness.
+- Commit cadence (11 commits, all in 6-hour window with median interval ~4.8 minutes) shows intense burst matching hackathon timeframe; no pre- or post-event commits detected.  
+- Presence of large bulk commit (max 8,799 LOC, up to 165 files) is notable but not uncommon when scaffolding full-stack project in short sprint; judges might spot it but context (mobile+backend+AI service) explains volume.  
+- Repository targets “SOUND WATCHER,” an AI-powered real-time sound detection/alert system spanning Flutter mobile app + FastAPI/TypeScript backend, aligning with README description and multi-service folder layout (FE, BE, AI_Service).  
+- Codebase scope—mobile app, backend services, AI inference pipeline—seems ambitious but feasible for a focused hackathon team leveraging modern tooling (Flutter, FastAPI, TypeScript) and likely code generation assistance.  
+- No early commits or odd timing gaps flagged; distribution concentrated in first 6 hours of event, supporting authenticity as hackathon work.
 
 Overall authenticity assessment: looks consistent with a hackathon project

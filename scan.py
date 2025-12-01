@@ -496,7 +496,6 @@ def main() -> None:
     parser.add_argument("--t0", help="Global hackathon start time (ISO-8601). Overrides config if set.")
     parser.add_argument("--t1", help="Hackathon end time (ISO-8601). Overrides config if set.")
     parser.add_argument("--work-dir", default="work", help="Work directory base path")
-    parser.add_argument("--force", action="store_true", help="Recompute metrics even if cached")
     parser.add_argument("--no-update", action="store_true", help="Do not fetch/pull existing clones")
     parser.add_argument("--log-level", help="Logging level (overrides config)")
     args = parser.parse_args()
@@ -554,7 +553,7 @@ def main() -> None:
         metrics_data = None
         default_branch = None
 
-        if metrics_json_path.exists() and not args.force:
+        if metrics_json_path.exists():
             logger.info("Skipping %s (cached metrics found).", repo_id)
             try:
                 with metrics_json_path.open("r", encoding="utf-8") as f:

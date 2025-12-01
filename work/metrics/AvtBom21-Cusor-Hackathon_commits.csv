@@ -4,3 +4,4 @@ AvtBom21-Cusor-Hackathon,1,a365ab1e7788609f1d2553b7812501f9b3feabd2,2025-11-29T1
 AvtBom21-Cusor-Hackathon,2,3396398019b4ea28735cf03a3dbb23bed2822d51,2025-11-29T12:17:30+00:00,23.88,377.50,7,20,1,0,0,0,1,0,"Fix analytics: remove NaN prompt/completion tokens, show total tokens and requests"
 AvtBom21-Cusor-Hackathon,3,6e64d6155204a48cbe39c5739f562e4c28f838bf,2025-11-29T12:20:09+00:00,2.65,380.15,9,3,1,0,0,0,1,0,Fix login error message: show 'Invalid username or password' for 401
 AvtBom21-Cusor-Hackathon,4,14ddbdcca0c2ef4c2eb29fefc0c3e4f2c9f685b5,2025-11-29T12:43:36+00:00,23.45,403.60,241,11,8,0,0,0,1,0,Add project chat edit feature with title and system prompt update
+AvtBom21-Cusor-Hackathon,5,93ec4c0a8fbf344fa14b0bb55848817c2e06dbfb,2025-11-29T13:02:34+00:00,18.97,422.57,96,39,7,0,0,0,1,0,"Fix chat sidebar: show edit/delete buttons, truncate long titles"

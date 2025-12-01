@@ -1,7 +1,7 @@
-- Two commits, both during the hack window, add ~5.2K LOC with a bulky first change (3.5K LOC, 16 files)—matches a single intense hack surge rather than gradual polish, which is typical for short events especially if scaffolding and assets are added up front.
-- No commits before T0 or after T1, so timing doesn’t raise red flags beyond the large initial dump; median spacing (~62 min) also aligns with focused bursts.
-- Repository is a React/Vite/Tailwind UI plus Express backend that integrates Gemini for prompt analysis/optimization—README, file tree, and config files all describe a cohesive “AI Prompt Optimizer” experience with frontend animations and backend API hooks.
-- Code scope (UI components, API config, Express server with Gemini service) is reasonable for a hackathon, leveraging existing tools/plugins rather than reinventing infrastructure; commits suggest the team scaffolded a modern stack and wired API interactions in a single sprint.
-- Notable pattern: a big initial commit followed by a single follow-up; while bulk commits can obscure intermediate work, no other anomalies (e.g., hidden histories) are evident from provided data.
+- Two commits, both timestamped within the Nov 29 06:00–12:00 UTC judging window (08:04 and 09:06 UTC from the repo’s git history), so all work appears to happen during the event with no pre‑ or post‑hackathon edits.
+- The metrics flag a very large initial commit (>3.5K LOC across 16 files) and “bulk commits,” but that diff just scaffolds a React/Vite frontend plus Express backend in one go—typical for a sprint build when wiring up UI, API, and tooling.
+- `README.md` explains “AI Prompt Optimizer,” with Gemini-backed prompt analysis/optimization, responsive glassmorphism UI, and particles animation, matching the component tree (e.g., `src/components/PromptInput.jsx`, `PromptDisplay.jsx`, `ParticlesBackground.jsx`) and server files.
+- Backend glue (`server/index.js` plus `server/services/geminiService.js`) wires an Express API to Google’s Gemini client, while `src/config/api.js` and React components keep the frontend/analysis flow organised—consistent scope for a small AI‑centric hackathon build.
+- No other red flags in timing or commit cadence; the median 62.1 minutes between commits dovetails with a solo/short team pace during a one‑day hack session.
 
 Overall authenticity assessment: looks consistent with a hackathon project

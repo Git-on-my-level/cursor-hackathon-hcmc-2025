@@ -1,5 +1,7 @@
-- Commits are a short, tight burst—four recorded between 2025‑11‑29 10:11 and 11:29 UTC (all within the 06:00‑12:00 hack window), with no pre/post activity and a median spacing of ~27 minutes, so the timing fits a small-team sprint.
-- Flagged “bulk commit” behavior comes from the 10:12 UTC commit that added the full Vite/React app, package-lock, and docs (13147 LOC spread across 58 files); it’s a big chunk of scaffolding but it happens early in the window, so it’s worth noting but not inherently outside the hackathon scope.
-- Product appears to be an “AI Landing Page Generator” with Gemini prompt UI, drag-drop/code editors, export options, and live preview, as described in `README.md:18`.
-- Code shape mirrors that description: the repo ships many editor/preview/components plus Gemini orchestration and utility layers (`src/services/geminiService.js:1` ties the UI to live Gemini generation), which aligns with a hackathon-built modern frontend powered by AI helpers, not a trivial placeholder. 
+- All four commits land between 17:11 and 18:29 +07:00 on 2025-11-29 (10:11–11:29 UTC), which fits entirely inside the 06:00–12:00 event window with no pre- or post-event activity; the reported ~27 min median spacing just reflects the gap between the middle commits.
+- The metrics flag “bulk commit” due to a ~13 k LOC initial push, but that’s the first commit in this tiny history and seems to capture the whole Vite/React/Tailwind scaffold rather than hidden prior work.
+- The README describes an “AI Landing Page Generator” that wires a prompt interface, Gemini AI analysis, live preview, drag/drop editor, Monaco code editor, and export/publish flows into one SPA experience (`README.md`).
+- The code tree (Vite entrypoints, services for Gemini/export, and 20+ focused components/hooks under `src/`) matches that scope, so the modern React + Tailwind setup aligns with what a small hackathon team could assemble in a few hours using AI tools.
+- Notable pattern: while the structure is sizeable, the repo only holds four commits, suggesting most work happened in the early bulk drop and that authors probably pushed a near-complete prototype rather than iterating over many micro-commits.
+
 Overall authenticity assessment: looks consistent with a hackathon project

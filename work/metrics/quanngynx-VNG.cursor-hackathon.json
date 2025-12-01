@@ -5,17 +5,17 @@
   "default_branch": "main",
   "t0": "2025-11-29T06:00:00+00:00",
   "t1": "2025-11-29T12:00:00+00:00",
-  "generated_at": "2025-11-29T12:48:51.254764+00:00",
+  "generated_at": "2025-11-30T07:42:20.773509+00:00",
   "summary": {
-    "total_commits": 14,
+    "total_commits": 29,
     "total_commits_before_t0": 0,
     "total_commits_during_event": 13,
-    "total_commits_after_t1": 1,
-    "total_loc_added": 28586,
-    "total_loc_deleted": 7254,
+    "total_commits_after_t1": 16,
+    "total_loc_added": 35896,
+    "total_loc_deleted": 8147,
     "max_loc_added_single_commit": 15534,
     "max_files_changed_single_commit": 60,
-    "median_minutes_between_commits": 3.85,
+    "median_minutes_between_commits": 2.0,
     "median_minutes_between_commits_during_event": 3.1416666666666666
   },
   "time_distribution": {

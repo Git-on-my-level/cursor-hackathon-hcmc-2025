@@ -1,7 +1,7 @@
-- All 9 commits landed between T0 and T1 with no pre-event history, which matches a short, intense hackathon burst despite a median 10-min cadence; the volume/LOC growth (20k added) is high but still plausible for a prototype built with modern scaffolding.
-- Flags include a large initial/early bulk commit and the “has_bulk_commits” note—suggests some mass-uploaded generated or scaffolded code, but nothing after the event or before T0 indicates outside work.
-- README/tree describe “The Interrogation Room,” a voice‑first escape game with AI host, Gemini Live audio, minimal UI, coin meta, campaigns, etc., so the scope is ambitious yet conceptually achievable in a prototype window.
-- The codebase is a typical Next.js + Bun + Zustand + shadcn UI stack, with dedicated hooks, components, and AI integrations, fitting the profile of a modern rapid build using AI coding helpers.
-- No suspicious timing gaps or post-window changes; the pieces feel cohesive for a single-session build even if some files were added en masse (possibly via code generation or scaffolding).
+- Commits are tightly grouped within the hackathon window (all between 07:41–10:58 UTC, median gap ≈10 min, no pre/post commits), reflecting a focused, sprint-style workflow with steady progression rather than the drag of regular maintenance.
+- Metrics flag a large bulk addition (max 6.6k LOC) but that aligns with the early scaffold/reset burst across `Initial commit` → dependency/workflow updates → teased features; the 9 commits are still reasonably granular for a short event.
+- `README.md` describes *The Interrogation Room*, a voice-first 90-second escape game with a toxic AI host, Google Gemini Live API integration, coin purchases, campaigns, and Next.js + Zustand/Tailwind/Framer stack, matching the asset tree that includes audio/state/hooks, UI components, and campaign schema.
+- Code layout (app/api/auth+image+scenario, audio worklets, chat/voice UI, stores, providers) shows well-scoped modules for voice streaming, scenario handling, and stats tracking, which is achievable during a hackathon with modern AI-augmented tooling.
+- No suspicious timing or pre-hackathon prep is evident beyond the expected bulk scaffolding; the commit content and tech stack fit the narrative of building an immersive AI-driven gameplay demo in a condensed time frame.
 
 Overall authenticity assessment: looks consistent with a hackathon project
