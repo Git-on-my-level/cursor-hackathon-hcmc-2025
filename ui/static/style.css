@@ -107,6 +107,14 @@ header {
 
 .stat-pill.flagged span { color: var(--danger); }
 .stat-pill.clean span { color: var(--ok); }
+.stat-pill.loc .loc-value { color: #a78bfa; }
+
+.stat-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 4px;
+}
 
 .meta { 
   color: var(--muted); 

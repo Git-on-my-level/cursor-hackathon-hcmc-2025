@@ -36,10 +36,18 @@ function updateStats(rows) {
   const total = rows.length;
   const flagged = rows.filter(hasAnyFlag).length;
   const clean = total - flagged;
+  
+  // Calculate total commits and LoC
+  const totalCommits = rows.reduce((sum, r) => sum + (Number(r.total_commits) || 0), 0);
+  const totalLocAdded = rows.reduce((sum, r) => sum + (Number(r.total_loc_added) || 0), 0);
+  const totalLocDeleted = rows.reduce((sum, r) => sum + (Number(r.total_loc_deleted) || 0), 0);
+  const totalLoc = totalLocAdded + totalLocDeleted;
 
   document.getElementById("stat-total").textContent = total;
   document.getElementById("stat-flagged").textContent = flagged;
   document.getElementById("stat-clean").textContent = clean;
+  document.getElementById("stat-commits").textContent = formatNumber(totalCommits);
+  document.getElementById("stat-loc").textContent = formatNumber(totalLoc);
 }
 
 function extractRepoName(repoUrl) {
