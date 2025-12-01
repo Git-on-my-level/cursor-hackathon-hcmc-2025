@@ -2,6 +2,8 @@
 
 Local CLI for judges to clone GitHub submissions, compute commit/activity metrics, and optionally produce short-form AI observations. Designed for macOS and ≤100 repos.
 
+<img width="1649" height="715" alt="image" src="https://github.com/user-attachments/assets/f4973def-5f11-402b-b38d-f94df2ad5bd6" />
+
 ## Requirements
 - macOS with `python3` (3.10+) and `git` in PATH
 - Optional: `codex` CLI in PATH for AI summaries (`codex --yolo exec --sandbox danger-full-access "<PROMPT>"`)
