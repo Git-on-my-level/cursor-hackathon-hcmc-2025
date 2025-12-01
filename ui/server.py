@@ -13,7 +13,9 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import unquote
 
-JUDGE_RESPONSES_PATH = Path("data/judge-responses-normalized.json")
+# Resolve relative to project root (parent of ui/)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+JUDGE_RESPONSES_PATH = PROJECT_ROOT / "data" / "judge-responses-normalized.json"
 
 
 class UiHandler(SimpleHTTPRequestHandler):

@@ -368,33 +368,36 @@ tbody tr.selected {
 .judge-cell {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .judge-chip {
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
-  border-radius: 8px;
-  background: var(--panel-hover);
-  border: 1px solid var(--border);
+  align-items: baseline;
+  gap: 1px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--accent-subtle);
+  border: 1px solid rgba(0, 217, 166, 0.25);
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.85rem;
-  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .judge-chip.no-data {
   color: var(--muted);
-  background: var(--bg-subtle);
-  border-style: dashed;
-}
-
-.judge-score {
-  font-weight: 700;
+  background: transparent;
+  border: none;
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 .judge-count {
+  font-size: 0.65rem;
+  font-weight: 400;
   color: var(--muted);
+  margin-left: 1px;
 }
 
 /* Flag chips */

@@ -150,11 +150,11 @@ function buildJudgeTooltip(info) {
 
 function renderJudgeCell(info) {
   if (!info || !info.responses || info.responses.length === 0) {
-    return '<span class="judge-chip no-data">No judges</span>';
+    return '<span class="judge-chip no-data">—</span>';
   }
-  const avg = Number(info.average_score || 0).toFixed(2);
+  const avg = Number(info.average_score || 0).toFixed(1);
   const tooltip = escapeAttr(buildJudgeTooltip(info));
-  return `<span class="judge-chip" title="${tooltip}"><span class="judge-score">${avg}</span><span class="judge-count">(${info.responses.length})</span></span>`;
+  return `<span class="judge-chip" title="${tooltip}">${avg}<span class="judge-count">/${info.responses.length}</span></span>`;
 }
 
 function renderJudgeDetails(info) {
@@ -163,7 +163,7 @@ function renderJudgeDetails(info) {
     container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🧑‍⚖️</div><div>No judge responses</div></div>';
     return;
   }
-  const avg = Number(info.average_score || 0).toFixed(2);
+  const avg = Number(info.average_score || 0).toFixed(1);
   const list = info.responses
     .map((r, idx) => {
       const thought = r.thoughts ? `<div class="judge-thought">${escapeHtml(r.thoughts)}</div>` : "";
@@ -172,8 +172,8 @@ function renderJudgeDetails(info) {
     .join("");
   container.innerHTML = `
     <div class="judge-summary">
-      <div class="judge-score-pill highlight">Avg ${avg}</div>
-      <div class="judge-meta">${info.responses.length} responses</div>
+      <div class="judge-score-pill highlight">${avg}</div>
+      <div class="judge-meta">${info.responses.length} response${info.responses.length !== 1 ? 's' : ''}</div>
     </div>
     <div class="judge-list">${list}</div>
   `;
