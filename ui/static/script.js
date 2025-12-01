@@ -48,6 +48,32 @@ function extractRepoName(repoUrl) {
   return repoUrl;
 }
 
+// Judge data cache
+let judgeMap = new Map();
+
+function normalizeRepoKey(repoUrl = "") {
+  return repoUrl.trim().replace(/\.git$/i, "").toLowerCase();
+}
+
+async function loadJudgeData() {
+  try {
+    const data = await fetchJSON("/api/judges");
+    const map = new Map();
+    if (data && data.by_repo) {
+      for (const [repoUrl, info] of Object.entries(data.by_repo)) {
+        const key = normalizeRepoKey(repoUrl);
+        map.set(key, info);
+        // Also store raw repoUrl as-is for exact matches
+        map.set(normalizeRepoKey(repoUrl.replace(/\.git$/i, "")), info);
+      }
+    }
+    judgeMap = map;
+  } catch (err) {
+    console.error("Failed to load judge data", err);
+    judgeMap = new Map();
+  }
+}
+
 // Cache for AI summaries
 const aiCache = new Map();
 
@@ -95,12 +121,63 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function escapeAttr(text) {
+  return (text || "").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function getJudgeInfoForRow(row) {
+  if (!row) return null;
+  const key = normalizeRepoKey(row.repo || "");
+  return judgeMap.get(key) || judgeMap.get(normalizeRepoKey(row.repo || "").replace(/\.git$/i, ""));
+}
+
+function buildJudgeTooltip(info) {
+  if (!info || !info.responses || info.responses.length === 0) return "No judge responses";
+  const parts = info.responses.map((r, idx) => {
+    const thought = r.thoughts ? ` — ${r.thoughts}` : "";
+    return `#${idx + 1}: ${r.score}${thought}`;
+  });
+  return parts.join("\n");
+}
+
+function renderJudgeCell(info) {
+  if (!info || !info.responses || info.responses.length === 0) {
+    return '<span class="judge-chip no-data">No judges</span>';
+  }
+  const avg = Number(info.average_score || 0).toFixed(2);
+  const tooltip = escapeAttr(buildJudgeTooltip(info));
+  return `<span class="judge-chip" title="${tooltip}"><span class="judge-score">${avg}</span><span class="judge-count">(${info.responses.length})</span></span>`;
+}
+
+function renderJudgeDetails(info) {
+  const container = document.getElementById("judge-output");
+  if (!info || !info.responses || info.responses.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🧑‍⚖️</div><div>No judge responses</div></div>';
+    return;
+  }
+  const avg = Number(info.average_score || 0).toFixed(2);
+  const list = info.responses
+    .map((r, idx) => {
+      const thought = r.thoughts ? `<div class="judge-thought">${escapeHtml(r.thoughts)}</div>` : "";
+      return `<div class="judge-row"><div class="judge-score-pill">#${idx + 1} • ${r.score}</div>${thought}</div>`;
+    })
+    .join("");
+  container.innerHTML = `
+    <div class="judge-summary">
+      <div class="judge-score-pill highlight">Avg ${avg}</div>
+      <div class="judge-meta">${info.responses.length} responses</div>
+    </div>
+    <div class="judge-list">${list}</div>
+  `;
+}
+
 async function renderSummaryTable(rows) {
   const tbody = document.querySelector("#summary-table tbody");
   tbody.innerHTML = "";
   const filterPre = document.querySelector("#filter-preT0").checked;
   const filterBulk = document.querySelector("#filter-bulk").checked;
   const filterMerge = document.querySelector("#filter-merge").checked;
+  const sortMode = document.querySelector("#sort-select").value;
 
   const filteredRows = rows.filter((r) => {
     if (filterPre && Number(r.has_commits_before_t0) === 0) return false;
@@ -109,12 +186,27 @@ async function renderSummaryTable(rows) {
     return true;
   });
 
+  const sortedRows = [...filteredRows].sort((a, b) => {
+    if (sortMode === "judge") {
+      const ja = getJudgeInfoForRow(a);
+      const jb = getJudgeInfoForRow(b);
+      const avga = ja && ja.average_score != null ? Number(ja.average_score) : -Infinity;
+      const avgb = jb && jb.average_score != null ? Number(jb.average_score) : -Infinity;
+      if (avga === avgb) return 0;
+      return avgb - avga;
+    }
+    if (sortMode === "commits") {
+      return Number(b.total_commits || 0) - Number(a.total_commits || 0);
+    }
+    return 0;
+  });
+
   updateStats(rows);
 
-  if (filteredRows.length === 0) {
+  if (sortedRows.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="10">
+        <td colspan="11">
           <div class="empty-state">
             <div class="empty-state-icon">📭</div>
             <div>No submissions match the current filters</div>
@@ -126,10 +218,11 @@ async function renderSummaryTable(rows) {
   }
 
   // Render rows first with loading placeholders for AI
-  filteredRows.forEach((row) => {
+  sortedRows.forEach((row) => {
     const tr = document.createElement("tr");
     const repoId = row.repo_id || extractRepoName(row.repo);
     const displayName = row.repo_id || extractRepoName(row.repo);
+    const judgeInfo = getJudgeInfoForRow(row);
     
     tr.innerHTML = `
       <td>
@@ -138,6 +231,7 @@ async function renderSummaryTable(rows) {
           <span class="repo-url">${escapeHtml(row.repo)}</span>
         </div>
       </td>
+      <td><div class="judge-cell">${renderJudgeCell(judgeInfo)}</div></td>
       <td><span class="num-cell">${row.total_commits}</span></td>
       <td><span class="num-cell loc-add">+${formatNumber(row.total_loc_added)}</span></td>
       <td><span class="num-cell loc-del">−${formatNumber(row.total_loc_deleted)}</span></td>
@@ -167,8 +261,11 @@ async function renderSummaryTable(rows) {
 }
 
 async function loadSummary() {
-  const data = await fetchJSON("/api/summary");
-  window.__summaryRows = data.rows || [];
+  const [summaryData] = await Promise.all([
+    fetchJSON("/api/summary"),
+    loadJudgeData(),
+  ]);
+  window.__summaryRows = summaryData.rows || [];
   await renderSummaryTable(window.__summaryRows);
 }
 
@@ -215,11 +312,13 @@ async function loadDetails(repoId) {
   const flagsEl = document.getElementById("metrics-flags");
   const timeEl = document.getElementById("metrics-time");
   const aiEl = document.getElementById("ai-output");
+  const judgeEl = document.getElementById("judge-output");
   
   summaryEl.textContent = "Loading...";
   flagsEl.textContent = "Loading...";
   timeEl.textContent = "Loading...";
   aiEl.textContent = "Loading...";
+  judgeEl.textContent = "Loading...";
   
   try {
     const [metrics, aiText, commitsData] = await Promise.all([
@@ -240,12 +339,19 @@ async function loadDetails(repoId) {
       aiEl.textContent = "No AI analysis available for this submission.";
     }
     
+    const summaryRow = (window.__summaryRows || []).find(
+      (r) => (r.repo_id || extractRepoName(r.repo)) === repoId
+    );
+    const judgeInfo = getJudgeInfoForRow(summaryRow);
+    renderJudgeDetails(judgeInfo);
+
     renderCommits(commitsData.rows || []);
   } catch (err) {
     summaryEl.textContent = `Error: ${err.message}`;
     flagsEl.textContent = "";
     timeEl.textContent = "";
     aiEl.textContent = "";
+    judgeEl.textContent = "";
   }
 }
 
@@ -309,6 +415,9 @@ document.addEventListener("DOMContentLoaded", () => {
       renderSummaryTable(window.__summaryRows || []);
     });
   });
+  document.getElementById("sort-select").addEventListener("change", () => {
+    renderSummaryTable(window.__summaryRows || []);
+  });
   
   // Drawer close handlers
   document.getElementById("close-drawer").addEventListener("click", closeDrawer);
@@ -322,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.querySelector("#summary-table tbody");
     tbody.innerHTML = `
       <tr>
-        <td colspan="10">
+        <td colspan="11">
           <div class="empty-state">
             <div class="empty-state-icon">⚠️</div>
             <div>Failed to load data: ${err.message}</div>

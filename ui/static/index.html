@@ -28,6 +28,14 @@
           <label><input type="checkbox" id="filter-preT0"> Pre-T0</label>
           <label><input type="checkbox" id="filter-bulk"> Bulk</label>
           <label><input type="checkbox" id="filter-merge"> Merge</label>
+          <div class="sorter">
+            <span>Sort by</span>
+            <select id="sort-select">
+              <option value="default">Default</option>
+              <option value="judge">Judge avg</option>
+              <option value="commits">Commits</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="table-wrapper">
@@ -35,6 +43,7 @@
           <thead>
             <tr>
               <th class="th-repo">Repository</th>
+              <th class="th-judge" data-tooltip="Average of judge scores; click row for notes">Judge Avg</th>
               <th class="th-num" data-tooltip="Total number of commits in the repository">Commits</th>
               <th class="th-num" data-tooltip="Lines of code added across all commits">LOC+</th>
               <th class="th-num" data-tooltip="Lines of code deleted across all commits">LOC−</th>
@@ -61,6 +70,10 @@
         <div class="ai-section">
           <h3>AI Analysis</h3>
           <div id="ai-output" class="ai-output"></div>
+        </div>
+        <div class="judge-section">
+          <h3>Judge Responses</h3>
+          <div id="judge-output" class="judge-output"></div>
         </div>
         <div class="metrics-grid">
           <div class="metric-card">

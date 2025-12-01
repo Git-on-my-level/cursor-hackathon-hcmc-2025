@@ -174,6 +174,7 @@ main {
 .filters {
   display: flex;
   gap: 6px;
+  align-items: center;
 }
 
 .filters label {
@@ -209,6 +210,27 @@ main {
 .filters input[type="checkbox"]:checked {
   background: var(--accent);
   border-color: var(--accent);
+}
+
+.sorter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.sorter select {
+  background: var(--bg-subtle);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
 }
 
 /* Table */
@@ -275,6 +297,7 @@ th[data-tooltip]:hover::after {
 
 /* Column widths */
 .th-repo { width: 24%; min-width: 200px; }
+.th-judge { width: 8%; text-align: center; }
 .th-num { width: 7%; text-align: right; }
 .th-flag { width: 5%; text-align: center; }
 .th-verdict { width: 5%; text-align: center; }
@@ -333,6 +356,38 @@ tbody tr.selected {
 
 .num-cell.loc-add { color: var(--ok); }
 .num-cell.loc-del { color: var(--danger); }
+
+.judge-cell {
+  display: flex;
+  align-items: center;
+}
+
+.judge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--panel-hover);
+  border: 1px solid var(--border);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.judge-chip.no-data {
+  color: var(--muted);
+  background: var(--bg-subtle);
+  border-style: dashed;
+}
+
+.judge-score {
+  font-weight: 700;
+}
+
+.judge-count {
+  color: var(--muted);
+}
 
 /* Flag chips */
 .flag {
@@ -529,6 +584,69 @@ tbody tr.selected {
 .ai-output .verdict.suspicious {
   background: var(--danger-subtle);
   color: var(--danger);
+}
+
+.judge-section {
+  margin-bottom: 16px;
+}
+
+.judge-output {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.judge-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.judge-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--panel-hover);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.judge-score-pill.highlight {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.judge-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.judge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.judge-row {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.judge-thought {
+  margin-top: 4px;
+  color: var(--text);
+  line-height: 1.4;
 }
 
 /* Metrics grid */

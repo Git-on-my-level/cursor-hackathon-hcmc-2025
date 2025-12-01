@@ -13,6 +13,8 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import unquote
 
+JUDGE_RESPONSES_PATH = Path("data/judge-responses-normalized.json")
+
 
 class UiHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, work_dir: Path, static_dir: Path, **kwargs):
@@ -40,6 +42,8 @@ class UiHandler(SimpleHTTPRequestHandler):
         path = unquote(self.path.split("?", 1)[0])
         if path == "/api/summary":
             return self.handle_summary()
+        if path == "/api/judges":
+            return self.handle_judges()
         if path.startswith("/api/repo/"):
             return self.handle_repo(path)
         return super().do_GET()
@@ -54,6 +58,15 @@ class UiHandler(SimpleHTTPRequestHandler):
             for row in reader:
                 rows.append(row)
         return self._send_json({"rows": rows})
+
+    def handle_judges(self):
+        if not JUDGE_RESPONSES_PATH.exists():
+            return self._send_json({"error": "judge data not found"}, status=404)
+        try:
+            data = json.loads(JUDGE_RESPONSES_PATH.read_text(encoding="utf-8"))
+        except Exception as exc:
+            return self._send_json({"error": f"failed to load judge data: {exc}"}, status=500)
+        return self._send_json(data)
 
     def handle_repo(self, path: str):
         parts = path.split("/")
